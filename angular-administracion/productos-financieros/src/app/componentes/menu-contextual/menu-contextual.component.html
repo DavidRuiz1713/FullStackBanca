@@ -1,0 +1,19 @@
+<div class="menu-contextual">
+  <div class="image-container">
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/61/61140.png?w=900&t=st=1663715358~exp=1663715958~hmac=8ef4e584471b022acd3d283ff3205e471dfc4fee3662c7e254a95fdfe4e1f185"
+      alt="imagenMenuContextual"
+      class="responsive-image menu-contextual-activo"
+      (click)="toggleMenu()"
+    />
+  </div>
+  <div class="menu">
+    @if (isMenuOpen) {
+      <ul>
+        <li (click)="editarProducto()">Editar</li>
+        <li (click)="eliminarProducto()">Eliminar</li>
+      </ul>
+    }
+  </div>
+</div>
+<app-modal [id]="producto?.id"></app-modal>

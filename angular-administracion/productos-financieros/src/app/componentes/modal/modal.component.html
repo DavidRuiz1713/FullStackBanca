@@ -1,0 +1,41 @@
+@if (modalVisible) {
+  <div class="modal">
+    <div class="contenido-modal">
+      <div class="texto">
+        @if (!modalErrorVisible) {
+          <div class="g-mb-32">
+            <h3>¿Estas a punto de eliminar el item {{ id }}?</h3>
+          </div>
+        }
+        @if (modalErrorVisible) {
+          <div class="g-mb-32">
+            <h3>¿Hubo un error menor al eliminar {{ id }}?</h3>
+          </div>
+        }
+      </div>
+      <app-notificacion></app-notificacion>
+      <hr />
+      <div class="botones">
+        <div class="grupo-botones-modal g-mt-16">
+          <button
+            type="button"
+            class="btn btn-secundario"
+            data-dismiss="modal"
+            (click)="ocultarModal()"
+          >
+            Cancelar
+          </button>
+          @if (!modalErrorVisible) {
+            <button
+              type="button"
+              class="btn btn-principal"
+              (click)="eliminarElemento()"
+            >
+              Confirmar
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+}

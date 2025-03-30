@@ -1,0 +1,209 @@
+<!-- Formulario dinamico el cual guarda o edita un cliente dependiendo
+ de los datos que se le envien, muestra las validaciones de cada input permitiendo
+ o no avanzar con el flujo-->
+<div class="container-formulario">
+    <div class="g-text-align">
+        <h1>Registrar Cliente</h1>
+        <hr />
+    </div>
+    <div class="g-p-16">
+        <form
+            action
+            [formGroup]="formularioCliente"
+            (ngSubmit)="agregarCliente(txtBoton)">
+            <div
+                class="g-grid g-grid__columnx2 g-gap-16 g-mb-16 formulario-inputs__responsive">
+                <div class="g-flex g-flex-column">
+                    <div class="g-pb-4">
+                        <label class="formulario-label">ID</label>
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            id="clienteId"
+                            name="clienteId"
+                            class="formulario-inputs"
+                            required
+                            formControlName="clienteId"
+                            [ngClass]="{
+                error_input:
+                  (clienteId.dirty && clienteId.invalid) || clienteExiste,
+              }"
+                            (input)="consultarCliente(clienteId.value)" />
+                    </div>
+                    @if (clienteId.dirty && clienteId.value.length <= 0) {
+                    <span class="txt-rojo">* El id es necesario</span>
+                    }
+                    @if (
+                    clienteId.invalid &&
+                    clienteId.dirty &&
+                    clienteId.value.length > 0 &&
+                    !clienteExiste
+                    ) {
+                    <span class="txt-rojo">* El id esta incorrecto (tiene que
+                        usar 3 a 10 caracteres)</span>
+                    }
+                    @if (clienteExiste) {
+                    <span class="txt-rojo">* El cliente con este ID ya
+                        existe.</span>
+                    }
+                </div>
+                <div class="g-flex g-flex-column">
+                    <div class="g-pb-4">
+                        <label class="formulario-label">Nombre</label>
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            id="nombre"
+                            name="nombre"
+                            class="formulario-inputs"
+                            required
+                            formControlName="nombre"
+                            [ngClass]="{ error_input: nombre.dirty && nombre.invalid }" />
+                    </div>
+                    @if (nombre.dirty && nombre.value.length <= 0) {
+                    <span class="txt-rojo">* El nombre es necesario</span>
+                    }
+                    @if (nombre.invalid && nombre.dirty && nombre.value.length >
+                    0) {
+                    <span class="txt-rojo">* El nombre está incorrecto (tiene
+                        que usar 5 a 100
+                        caracteres)</span>
+                    }
+                </div>
+            </div>
+            <div
+                class="g-grid g-grid__columnx2 g-gap-16 g-mb-16 formulario-inputs__responsive">
+                <div class="g-flex g-flex-column">
+                    <div class="g-pb-4">
+                        <label for class="formulario-label">Direccion</label>
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            id="direccion"
+                            name="direccion"
+                            class="formulario-inputs"
+                            required
+                            formControlName="direccion"
+                            [ngClass]="{
+                error_input: direccion.dirty && direccion.invalid,
+              }" />
+                    </div>
+                    @if (direccion.dirty && direccion.value.length <= 0) {
+                    <span class="txt-rojo">* La Direccion es necesaria</span>
+                    }
+                    @if (
+                    direccion.invalid && direccion.dirty &&
+                    direccion.value.length > 0
+                    ) {
+                    <span class="txt-rojo">* El Direccion está incorrecta (tiene
+                        que usar 10 a 200
+                        caracteres)</span>
+                    }
+                </div>
+                <div class="g-flex g-flex-column">
+                    <div class="g-pb-4">
+                        <label for
+                            class="formulario-label">Identificacion</label>
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            id="identificacion"
+                            name="identificacion"
+                            class="formulario-inputs"
+                            formControlName="identificacion"
+                            [ngClass]="{ error_input: identificacion.dirty && identificacion.invalid }"
+                            required />
+                    </div>
+                    @if (identificacion.dirty && identificacion.value.length <=
+                    0) {
+                    <span class="txt-rojo">* La identificacion es
+                        necesario</span>
+                    }
+                </div>
+            </div>
+
+            <div
+                class="g-grid g-grid__columnx2 g-gap-16 g-mb-32 formulario-inputs__responsive">
+                <div class="g-flex g-flex-column">
+                    <div class="g-pb-4">
+                        <label for class="formulario-label">Telefono</label>
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            id="telefono"
+                            name="telefono"
+                            required
+                            formControlName="telefono"
+                            class="formulario-date-input formulario-inputs" />
+                    </div>
+                    @if (telefono.dirty && telefono.value.length <= 0) {
+                    <span class="txt-rojo">* El telefono es necesario </span>
+                    }
+                </div>
+                <div class="g-flex g-flex-column">
+                    <div class="g-pb-4">
+                        <label for class="formulario-label">Contraseña</label>
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            id="contrasena"
+                            name="contrasena"
+                            formControlName="contrasena" />
+                    </div>
+                </div>
+            </div>
+            <div
+                class="g-grid g-grid__columnx2 g-gap-16 g-mb-32 formulario-inputs__responsive">
+                <div class="g-flex g-flex-column">
+                    <div class="g-pb-4">
+                        <label for class="formulario-label">Genero</label>
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            id="genero"
+                            name="genero"
+                            required
+                            formControlName="genero"
+                            class="formulario-date-input formulario-inputs" />
+                    </div>
+                    @if (genero.dirty && genero.value.length <= 0) {
+                    <span class="txt-rojo">* El genero es necesario </span>
+                    }
+                </div>
+                <div class="g-flex g-flex-column">
+                    <div class="g-pb-4">
+                        <label for class="formulario-label">Edad</label>
+                    </div>
+                    <div>
+                        <input
+                            type="number"
+                            id="edad"
+                            name="edad"
+                            formControlName="edad" />
+                    </div>
+                </div>
+            </div>
+            <div class="g-mt-16 g-flex g-justify-content-center g-gap-32">
+                <button
+                    type="button"
+                    class="btn btn-secundario"
+                    (click)="borrarFormulario(txtBoton)">
+                    Reiniciar
+                </button>
+                <button
+                    class="btn btn-principal"
+                    type="submit"
+                    [disabled]="formularioCliente.invalid || hasChanges()">
+                    {{ txtBoton }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,117 @@
+<!-- Tabla que se muestra en la pagina principal de la aplicacion
+ la cual usa los componentes secundarios de notificaciones, buscador, modal, menu
+ contextual y un skeleton de precarga para los datos-->
+<h1>Clientes</h1>
+<div class="g-grid-templatex2 g-grid g-mb-16 tabla-contenedor__celular">
+  <app-buscador (valueChange)="onValueChange($event)"></app-buscador>
+  <div class="g-flex-end g-flex">
+    <button class="btn btn-principal" (click)="irAgregarCliente()">
+      Nuevo
+    </button>
+  </div>
+</div>
+
+@if (!mostrarDatos) {
+  <!-- Skeleton -->
+  <div class="productos-container">
+    <div class="contenedor-tabla">
+      <table class="g-p-8">
+        <thead>
+          <tr>
+            @for (item of campos; track $index) {
+              <th>
+                <div
+                  [ngClass]="{ 'g-justify-content-center': $index == 0 }"
+                  class="g-flex g-flex-row g-align-items__center g-gap-8"
+                >
+                  <div>
+                    {{ item.titulo }}
+                  </div>
+                </div>
+              </th>
+            }
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="cuadrado-esqueleton"></div>
+            </td>
+            <td>
+              <div class="cuadrado-esqueleton"></div>
+            </td>
+            <td class="td-descripcion__tamano">
+              <div class="cuadrado-esqueleton"></div>
+            </td>
+            <td>
+              <div class="cuadrado-esqueleton"></div>
+            </td>
+            <td>
+              <div class="cuadrado-esqueleton"></div>
+            </td>
+            <td>
+              <div class="cuadrado-esqueleton"></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="g-grid-templatex2 g-grid g-mt-16 tabla-contenedor__celular">
+      <div class="cuadrado-esqueleton"></div>
+      <div class="g-flex-end g-flex">
+        <div class="cuadrado-esqueleton"></div>
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="productos-container">
+    <div class="contenedor-tabla">
+      <table class="g-p-8">
+        <thead>
+          <tr>
+            @for (item of campos; track $index) {
+              <th>
+                <div
+                  [ngClass]="{ 'g-justify-content-center': $index == 0 }"
+                  class="g-flex g-flex-row g-align-items__center g-gap-8"
+                >
+                  <div>
+                    {{ item.titulo }}
+                  </div>
+                </div>
+              </th>
+            }
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of filteredItems(); track item.id) {
+            <tr>
+              <td>{{ item.nombre | titlecase }}</td>
+              <td class="td-descripcion__tamano">
+                {{ item.direccion | titlecase }}
+              </td>
+              <td>{{ item.identificacion }}</td>
+              <td>{{ item.contrasena }}</td>
+              <td>{{ item.estado }}</td>
+              <td>
+                <app-menu-contextual [producto]="item"></app-menu-contextual>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <div class="g-grid-templatex2 g-grid g-mt-16 tabla-contenedor__celular">
+      <div>{{ filteredItems().length }} Resultados</div>
+      <div class="g-flex-end g-flex">
+        <select class="select-imagen" [(ngModel)]="itemsPorPagina">
+          <option *ngFor="let option of cantidadItems" [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+}

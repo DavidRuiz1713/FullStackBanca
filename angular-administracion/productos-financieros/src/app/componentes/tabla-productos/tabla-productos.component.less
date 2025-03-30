@@ -1,0 +1,98 @@
+@import url(../../estilos/estilo-colores.less);
+
+
+.productos-container {
+    background: @g-blanco;
+    padding: 16px;
+}
+
+.contenedor-tabla {
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.contenedor-tabla::-webkit-scrollbar {
+    height: 4px;
+}
+
+.contenedor-tabla::-webkit-scrollbar-track {
+    background: @g-blanco;
+    border-radius: 8px;
+}
+
+.contenedor-tabla::-webkit-scrollbar-thumb {
+    background: @g-gris-debil;
+    border-radius: 4px;
+}
+
+.contenedor-tabla::-webkit-scrollbar-thumb:hover {
+    background: @g-gris-debil;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #a8baf124;
+    text-align: left;
+}
+
+th,
+td {
+    border-bottom: solid 1px #a8baf124;
+    padding: 12px;
+    font-size: 10px;
+}
+
+.td-descripcion__tamano {
+    width: 150px;
+}
+
+.logo-container {
+    text-align: center;
+    width: 50px;
+}
+
+.logo-image {
+    max-width: 50px;
+    max-height: 25px;
+    width: auto;
+    height: auto;
+}
+
+select {
+    width: 50px;
+    text-align: center;
+    text-align-last: center;
+    font-size: 12px;
+    padding: 3px;
+    border-radius: 4px;
+    border: solid 1px @g-gris-debil;
+}
+
+.cuadrado-esqueleton {
+    width: 100%;
+    background: @g-gris-debil;
+    height: 20px;
+    border-radius: 8px ;
+    background: linear-gradient(45deg, #a8abaf, #aec1d4, #2e363d, #8f99a3, #cccccc, #666666);        background-size: 400% 400%;
+    animation: moverColor 5s ease infinite;
+}
+
+/* Animacion para la simulacion del skeleton */
+@keyframes moverColor {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 100%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
+}

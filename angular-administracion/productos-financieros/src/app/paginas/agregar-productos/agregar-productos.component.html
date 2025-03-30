@@ -1,0 +1,13 @@
+<!-- Página secundaria que muestra un formulario dinámico
+para agregar o editar productos -->
+<h1>
+  <a class="link" (click)="irAProductos()">
+    <span class="signo-grande">&lt;</span> Regresar a Clientes
+  </a>
+</h1>
+
+<div class="g-flex g-justify-content-center">
+  <app-formulario-clientes
+    (estadoFormulario)="actualizarEstadoFormulario($event)"
+  ></app-formulario-clientes>
+</div>

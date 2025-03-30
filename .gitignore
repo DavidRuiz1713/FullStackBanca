@@ -1,0 +1,17 @@
+# Docker
+*/target/
+*/node_modules/
+*/dist/
+.env
+docker-compose.override.yml
+
+# Archivos de IDE
+.idea/
+.vscode/
+*.iml
+
+# Archivos compilados
+*.jar
+*.war
+*.ear
+*.class

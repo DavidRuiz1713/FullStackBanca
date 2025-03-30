@@ -1,0 +1,42 @@
+@import url(../../../estilos/estilo-colores.less);
+
+.container-formulario {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: @g-blanco;
+    max-width: 410px;
+    width: 100%;
+    height: auto;
+}
+
+.formulario-titulo {
+    text-align: center;
+}
+
+.formulario-inputs {
+    padding: 5px;
+    border: solid 1px @g-gris-debil;
+    border-radius: 4px;
+}
+
+.formulario-date-input {
+    width: 92%;
+}
+
+.txt-rojo {
+    color: @g-rojo;
+}
+
+
+@media screen and (max-width: 600px) {
+
+    .container-formulario {
+        padding: 6px;
+        align-items: center;
+    }
+
+    .formulario-inputs__responsive {
+        grid-template-columns: 1fr !important;
+    }
+}

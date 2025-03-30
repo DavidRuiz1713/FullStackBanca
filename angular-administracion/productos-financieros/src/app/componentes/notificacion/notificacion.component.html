@@ -1,0 +1,5 @@
+@if (mostrarNotificacion){
+<div class="g-flex g-align-items__center g-justify-content-center">
+    <p [ngClass]="{ 'error': tipo == 'error','correcta': tipo == 'correcta', 'ocultar': ocultarNotificacion && tipo != 'error' }" class="notificacion">{{texto}}</p>
+</div>
+}

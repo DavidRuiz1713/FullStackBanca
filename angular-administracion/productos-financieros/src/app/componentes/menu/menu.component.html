@@ -1,0 +1,9 @@
+<div class="sidebar">
+  <ul class="dropdown-menu">
+    @for (item of items; track $index) {
+      <li (click)="onItemClick(item.route)">
+        {{ item.name }}
+      </li>
+    }
+  </ul>
+</div>
